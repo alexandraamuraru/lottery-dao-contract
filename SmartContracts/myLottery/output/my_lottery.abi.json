@@ -1,0 +1,229 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.76.0-nightly",
+            "commitHash": "d86d65bbc19b928387f68427fcc3a0da498d8a19",
+            "commitDate": "2023-12-10",
+            "channel": "Nightly",
+            "short": "rustc 1.76.0-nightly (d86d65bbc 2023-12-10)"
+        },
+        "contractCrate": {
+            "name": "my_lottery",
+            "version": "0.0.0"
+        },
+        "framework": {
+            "name": "multiversx-sc",
+            "version": "0.47.8"
+        }
+    },
+    "name": "MyLottery",
+    "constructor": {
+        "inputs": [],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "name": "start",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "lottery_name",
+                    "type": "bytes"
+                },
+                {
+                    "name": "token_identifier",
+                    "type": "EgldOrEsdtTokenIdentifier"
+                },
+                {
+                    "name": "ticket_price",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "opt_total_tickets",
+                    "type": "Option<u32>"
+                },
+                {
+                    "name": "opt_deadline",
+                    "type": "Option<u64>"
+                },
+                {
+                    "name": "opt_max_entries_per_user",
+                    "type": "Option<u32>"
+                },
+                {
+                    "name": "opt_prize_distribution",
+                    "type": "Option<bytes>"
+                }
+            ],
+            "outputs": [],
+            "allow_multiple_var_args": true
+        },
+        {
+            "name": "createLotteryPool",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "lottery_name",
+                    "type": "bytes"
+                },
+                {
+                    "name": "token_identifier",
+                    "type": "EgldOrEsdtTokenIdentifier"
+                },
+                {
+                    "name": "ticket_price",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "opt_total_tickets",
+                    "type": "Option<u32>"
+                },
+                {
+                    "name": "opt_deadline",
+                    "type": "Option<u64>"
+                },
+                {
+                    "name": "opt_max_entries_per_user",
+                    "type": "Option<u32>"
+                },
+                {
+                    "name": "opt_prize_distribution",
+                    "type": "Option<bytes>"
+                }
+            ],
+            "outputs": [],
+            "allow_multiple_var_args": true
+        },
+        {
+            "name": "buy_ticket",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [
+                {
+                    "name": "lottery_name",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "determine_winner",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "lottery_name",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "getActiveLotteries",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "List<bytes>"
+                }
+            ]
+        },
+        {
+            "name": "status",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "lottery_name",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "Status"
+                }
+            ]
+        },
+        {
+            "name": "getLotteryInfo",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "lottery_name",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "LotteryInfo"
+                }
+            ]
+        },
+        {
+            "name": "setRewardsDistributionAddress",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        }
+    ],
+    "esdtAttributes": [],
+    "hasCallback": false,
+    "types": {
+        "LotteryInfo": {
+            "type": "struct",
+            "fields": [
+                {
+                    "name": "token_identifier",
+                    "type": "EgldOrEsdtTokenIdentifier"
+                },
+                {
+                    "name": "ticket_price",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "tickets_left",
+                    "type": "u32"
+                },
+                {
+                    "name": "deadline",
+                    "type": "u64"
+                },
+                {
+                    "name": "max_entries_per_user",
+                    "type": "u32"
+                },
+                {
+                    "name": "prize_distribution",
+                    "type": "bytes"
+                },
+                {
+                    "name": "prize_pool",
+                    "type": "BigUint"
+                }
+            ]
+        },
+        "Status": {
+            "type": "enum",
+            "variants": [
+                {
+                    "name": "Inactive",
+                    "discriminant": 0
+                },
+                {
+                    "name": "Running",
+                    "discriminant": 1
+                },
+                {
+                    "name": "Ended",
+                    "discriminant": 2
+                }
+            ]
+        }
+    }
+}

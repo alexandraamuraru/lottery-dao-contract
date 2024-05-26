@@ -1,0 +1,1 @@
+/home/alexandra/Proiecte/Licenta/SmartContracts/rewardsDistribution/target/wasm32-unknown-unknown/release/rewards_distribution_wasm.wasm: /home/alexandra/Proiecte/Licenta/SmartContracts/rewardsDistribution/src/rewards_distribution.rs /home/alexandra/Proiecte/Licenta/SmartContracts/rewardsDistribution/wasm/src/lib.rs
